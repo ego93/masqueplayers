@@ -18,6 +18,13 @@
 
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="wrap">
+				
+				<?php if ( has_nav_menu( 'bottom' ) ) : ?>
+					<nav class="footer-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Footer Menu', 'twentyseventeen' ); ?>">
+						<?php wp_nav_menu( array( 'theme_location' => 'bottom', 'menu_id' => 'bottom-menu', )); ?>
+					</div><!-- .navigation-footer -->
+				<?php endif; ?>
+
 				<?php
 				get_template_part( 'template-parts/footer/footer', 'widgets' );
 
@@ -33,11 +40,12 @@
 							) );
 						?>
 					</nav><!-- .social-navigation -->
-				<?php endif;
+				<?php endif; ?>
 
-				get_template_part( 'template-parts/footer/site', 'info' );
-				?>
+				<a href="#top" class="to-top"><span class="dashicons dashicons-arrow-up-alt"></span></a>
 			</div><!-- .wrap -->
+
+
 		</footer><!-- #colophon -->
 	</div><!-- .site-content-contain -->
 </div><!-- #page -->

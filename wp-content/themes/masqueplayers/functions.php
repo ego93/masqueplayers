@@ -61,6 +61,7 @@ function twentyseventeen_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'top'    => __( 'Top Menu', 'twentyseventeen' ),
+		'bottom' => __( 'Footer Menu', 'twentyseventeen' ),
 		'social' => __( 'Social Links Menu', 'twentyseventeen' ),
 	) );
 
@@ -181,6 +182,17 @@ function twentyseventeen_setup() {
 			// Assign a menu to the "top" location.
 			'top' => array(
 				'name' => __( 'Top Menu', 'twentyseventeen' ),
+				'items' => array(
+					'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
+					'page_about',
+					'page_blog',
+					'page_contact',
+				),
+			),
+
+			// Assign a menu to the "bottom" location.
+			'bottom' => array(
+				'name' => __( 'Footer Menu', 'twentyseventeen' ),
 				'items' => array(
 					'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
 					'page_about',
@@ -584,3 +596,11 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  * SVG icons functions and filters.
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
+
+function my_force_login() {
+global $post;
+
+if (!is_user_logged_in()) {
+    auth_redirect();
+    }
+}
